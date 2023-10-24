@@ -1,2 +1,2 @@
-# vision_microservice_lama_inpainting
-Delpoys advimman/lama
+# Vision Microservice Lama Inpainting
+Deploys [LaMa Image Inpainting](https://github.com/advimman/lama) as a microservice.
