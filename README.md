@@ -1,8 +1,33 @@
 # Vision Microservice Lama Inpainting
 Deploys [LaMa Image Inpainting](https://github.com/advimman/lama) as a microservice.
 
-## Setup
-I used the conda option in the upstream's [Environment setup - 2. conda](https://github.com/advimman/lama#environment-setup).
+## Environment setup
+I used the conda option in the upstream's [2. conda](https://github.com/advimman/lama#environment-setup).
+
+## [Inference](https://github.com/advimman/lama#inference-)
+
+Following the writeup:
+```console
+(lama) osalbahr@44e7b923309e:~/git/lama$ curl -L $(yadisk-direct https://disk.yandex.ru/d/xKQJZeVRk5vLlQ) -o LaMa_test_images.zip
+Traceback (most recent call last):
+  File "/home/osalbahr/miniconda3/envs/lama/bin/yadisk-direct", line 8, in <module>
+    sys.exit(main())
+  File "/home/osalbahr/miniconda3/envs/lama/lib/python3.6/site-packages/wldhx/yadisk_direct/main.py", line 23, in main
+    print(*[get_real_direct_link(x) for x in args.sharing_link], sep=args.separator)
+  File "/home/osalbahr/miniconda3/envs/lama/lib/python3.6/site-packages/wldhx/yadisk_direct/main.py", line 23, in <listcomp>
+    print(*[get_real_direct_link(x) for x in args.sharing_link], sep=args.separator)
+  File "/home/osalbahr/miniconda3/envs/lama/lib/python3.6/site-packages/wldhx/yadisk_direct/main.py", line 12, in get_real_direct_link
+    return pk_request.json()['href']
+KeyError: 'href'
+curl: no URL specified!
+curl: try 'curl --help' or 'curl --manual' for more information
+```
+
+This error was referenced in the following issue:
+
+- [KeyError: 'href' occur When I use yadisk to download big-lama.zip #229](https://github.com/advimman/lama/issues/229)
+
+It looks like the files are no longer available in https://disk.yandex.ru/d/xKQJZeVRk5vLlQ.
 
 ## System info
 ```console
