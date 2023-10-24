@@ -4,9 +4,9 @@ Deploys [LaMa Image Inpainting](https://github.com/advimman/lama) as a microserv
 ## Environment setup
 I used the conda option in the upstream's [2. conda](https://github.com/advimman/lama#environment-setup).
 
-## [Inference](https://github.com/advimman/lama#inference-)
+## Inference
 
-Following the writeup:
+Following the [writeup](https://github.com/advimman/lama#inference-):
 ```console
 (lama) osalbahr@44e7b923309e:~/git/lama$ curl -L $(yadisk-direct https://disk.yandex.ru/d/xKQJZeVRk5vLlQ) -o LaMa_test_images.zip
 Traceback (most recent call last):
