@@ -1,0 +1,2 @@
+# vision_microservice_lama_inpainting
+Delpoys advimman/lama
