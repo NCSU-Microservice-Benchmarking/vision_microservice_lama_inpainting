@@ -8,18 +8,21 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - uses: actions/checkout@v3
 
       - name: Create and activate the venv
         run: |
-          python3 -m venv foo
-          source foo/bin/activate
+          python3 -m venv .venv
+          source .venv/bin/activate
 
-      - name: Install simple-lama-inpainting
-        run: pip install simple-lama-inpainting
+      - name: Install requirements
+        run: pip install -r requirements.txt
 
-      - name: Check the installation
-        run: simple_lama --help
+      - name: Check the installations
+        run: |
+          simple_lama --help
+          flask --version
+
