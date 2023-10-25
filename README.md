@@ -27,6 +27,20 @@ ImportError: libGL.so.1: cannot open shared object file: No such file or directo
 
 you may need to `apt install libgl1`.
 
+## Usage
+
+### simple-lama-inpainting
+
+See the documentation in [simple-lama-inpainting · PyPI](https://pypi.org/project/simple-lama-inpainting/).
+
+### Flask
+
+TODO: add details
+
+### Server deployment
+
+TODO: simple-lama-inpainting + Flask
+
 ## System info
 ```console
 (foo) osalbahr@12841f99a914:~$ fastfetch
