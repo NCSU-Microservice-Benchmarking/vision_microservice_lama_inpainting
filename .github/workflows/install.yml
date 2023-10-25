@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Create and activate the venv
+        run: |
+          python3 -m venv foo
+          source foo/bin/activate
+
+      - name: Install simple-lama-inpainting
+        run: pip install simple-lama-inpainting
+
+      - name: Check the installation
+        run: simple_lama --help
