@@ -1,49 +1,47 @@
 # Vision Microservice Lama Inpainting
-Deploys [LaMa Image Inpainting](https://github.com/advimman/lama) as a microservice.
+Deploys [simple-lama-inpainting](https://github.com/enesmsahin/simple-lama-inpainting) as a microservice, using ``.
 
 ## Environment setup
-I used the conda option in the upstream's [2. conda](https://github.com/advimman/lama#environment-setup).
 
-## Inference
-
-Following the [writeup](https://github.com/advimman/lama#inference-):
+First, install [venv](https://docs.python.org/3/library/venv.html). I decided to do so through `apt`:
 ```console
-(lama) osalbahr@44e7b923309e:~/git/lama$ curl -L $(yadisk-direct https://disk.yandex.ru/d/xKQJZeVRk5vLlQ) -o LaMa_test_images.zip
-Traceback (most recent call last):
-  File "/home/osalbahr/miniconda3/envs/lama/bin/yadisk-direct", line 8, in <module>
-    sys.exit(main())
-  File "/home/osalbahr/miniconda3/envs/lama/lib/python3.6/site-packages/wldhx/yadisk_direct/main.py", line 23, in main
-    print(*[get_real_direct_link(x) for x in args.sharing_link], sep=args.separator)
-  File "/home/osalbahr/miniconda3/envs/lama/lib/python3.6/site-packages/wldhx/yadisk_direct/main.py", line 23, in <listcomp>
-    print(*[get_real_direct_link(x) for x in args.sharing_link], sep=args.separator)
-  File "/home/osalbahr/miniconda3/envs/lama/lib/python3.6/site-packages/wldhx/yadisk_direct/main.py", line 12, in get_real_direct_link
-    return pk_request.json()['href']
-KeyError: 'href'
-curl: no URL specified!
-curl: try 'curl --help' or 'curl --manual' for more information
+# apt install python3.8-venv
+```
+Next, create the venv:
+```console
+$ python3 -m venv foo
 ```
 
-This error was referenced in the following issue:
+Now you can activate the venv and install `simple-lama-inpainting`. In bash:
+```console
+$ source foo/bin/activate
+$ pip install simple-lama-inpainting
+```
 
-- [KeyError: 'href' occur When I use yadisk to download big-lama.zip #229](https://github.com/advimman/lama/issues/229)
+## Runtime requirements
 
-It looks like the files are no longer available in https://disk.yandex.ru/d/xKQJZeVRk5vLlQ.
+If you use `simple_lama` and run into the following error:
+```console
+ImportError: libGL.so.1: cannot open shared object file: No such file or directory
+```
+
+you may need to `apt install libgl1`.
 
 ## System info
 ```console
-(lama) osalbahr@44e7b923309e:~/git/lama$ fastfetch
-                            ....               osalbahr@44e7b923309e
+(foo) osalbahr@12841f99a914:~$ fastfetch
+                            ....               osalbahr@12841f99a914
               .',:clooo:  .:looooo:.           ---------------------
            .;looooooooc  .oooooooooo'          OS: Ubuntu focal 20.04 x86_64
         .;looooool:,''.  :ooooooooooc          Host: Alienware Aurora R9 (1.0.7)
        ;looool;.         'oooooooooo,          Kernel: 6.2.0-34-generic
-      ;clool'             .cooooooc.  ,,       Uptime: 13 days, 48 mins
-         ...                ......  .:oo,      Packages: 315 (dpkg), 13 (brew)
+      ;clool'             .cooooooc.  ,,       Uptime: 13 days, 8 hours, 38 mins
+         ...                ......  .:oo,      Packages: 355 (dpkg), 13 (brew)
   .;clol:,.                        .loooo'     Shell: bash 5.0.17
  :ooooooooo,                        'ooool     Terminal: /dev/pts/0
 'ooooooooooo.                        loooo.    CPU: Intel(R) Core(TM) i9-9900K (16) @ 5.00 GHz
-'ooooooooool                         coooo.    Memory: 34.04 GiB / 62.61 GiB (54%)
- ,loooooooc.                        .loooo.    Disk (/): 109.48 GiB / 1.83 TiB (6%) - overlay
+'ooooooooool                         coooo.    Memory: 34.28 GiB / 62.61 GiB (55%)
+ ,loooooooc.                        .loooo.    Disk (/): 110.56 GiB / 1.83 TiB (6%) - overlay
    .,;;;'.                          ;ooooc     Locale: C.UTF-8
        ...                         ,ooool.    
     .cooooc.              ..',,'.  .cooo.      ████████████████████████
@@ -53,4 +51,28 @@ It looks like the files are no longer available in https://disk.yandex.ru/d/xKQJ
            .':loooooo;  ,oooooooooc    
                ..';::c'  .;loooo:'    
                              .
+(foo) osalbahr@12841f99a914:~$ nvidia-smi 
+Wed Oct 25 03:13:20 2023       
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.113.01             Driver Version: 535.113.01   CUDA Version: 12.2     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  NVIDIA GeForce RTX 2080 ...    Off | 00000000:01:00.0 Off |                  N/A |
+| 18%   28C    P8              16W / 250W |     15MiB /  8192MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+|   1  NVIDIA GeForce RTX 2080 ...    Off | 00000000:02:00.0 Off |                  N/A |
+| 18%   28C    P8              13W / 250W |      6MiB /  8192MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+                                                                                         
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
++---------------------------------------------------------------------------------------+
 ```
