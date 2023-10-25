@@ -9,12 +9,12 @@ First, install [venv](https://docs.python.org/3/library/venv.html). I decided to
 ```
 Next, create the venv:
 ```console
-$ python3 -m venv foo
+$ python3 -m venv .venv
 ```
 
 Now you can activate the venv and install `simple-lama-inpainting`. In bash:
 ```console
-$ source foo/bin/activate
+$ source .venv/bin/activate
 $ pip install simple-lama-inpainting
 ```
 
@@ -35,7 +35,14 @@ See the documentation in [simple-lama-inpainting · PyPI](https://pypi.org/proje
 
 ### Flask
 
-TODO: add details
+As of right now, `flask/app.py` is simply the boilerplate in [Quickstart — Flask Documentation (3.0.x)](https://github.com/orgs/community/discussions/16925).
+
+```
+$ cd flask
+$ flask run
+```
+
+TODO: rename the `*.py` files, investigate arguments, etc
 
 ### Server deployment
 
@@ -43,7 +50,7 @@ TODO: simple-lama-inpainting + Flask
 
 ## System info
 ```console
-(foo) osalbahr@12841f99a914:~$ fastfetch
+(.venv) osalbahr@12841f99a914:~$ fastfetch
                             ....               osalbahr@12841f99a914
               .',:clooo:  .:looooo:.           ---------------------
            .;looooooooc  .oooooooooo'          OS: Ubuntu focal 20.04 x86_64
@@ -65,7 +72,7 @@ TODO: simple-lama-inpainting + Flask
            .':loooooo;  ,oooooooooc    
                ..';::c'  .;loooo:'    
                              .
-(foo) osalbahr@12841f99a914:~$ nvidia-smi 
+(.venv) osalbahr@12841f99a914:~$ nvidia-smi 
 Wed Oct 25 03:13:20 2023       
 +---------------------------------------------------------------------------------------+
 | NVIDIA-SMI 535.113.01             Driver Version: 535.113.01   CUDA Version: 12.2     |
