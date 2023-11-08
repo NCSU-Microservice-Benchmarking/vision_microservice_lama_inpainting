@@ -40,7 +40,6 @@ As of right now, `app.py` has harcoded paths for testing purposes.
 TODO: get the image and mask through an API call.
 
 ```
-$ cd flask
 $ flask run
 ```
 
