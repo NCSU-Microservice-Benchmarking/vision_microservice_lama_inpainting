@@ -33,20 +33,16 @@ you may need to `apt install libgl1`.
 
 See the documentation in [simple-lama-inpainting · PyPI](https://pypi.org/project/simple-lama-inpainting/).
 
-### Flask
+### Server Deployment (Flask)
 
-As of right now, `flask/app.py` is simply the boilerplate in [Quickstart — Flask Documentation (3.0.x)](https://github.com/orgs/community/discussions/16925).
+As of right now, `app.py` has harcoded paths for testing purposes.
+
+TODO: get the image and mask through an API call.
 
 ```
 $ cd flask
 $ flask run
 ```
-
-TODO: rename the `*.py` files, investigate arguments, etc
-
-### Server deployment
-
-TODO: simple-lama-inpainting + Flask
 
 ## System info
 ```console
