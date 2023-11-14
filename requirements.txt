@@ -1,6 +1,6 @@
 # Server requirements
 flask==3.0.0
-simple-lama-inpainting==0.1.0
+simple-lama-inpainting==0.1.2
 numpy==1.24.4
 opencv-python==4.8.1.78
 
