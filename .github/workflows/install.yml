@@ -26,3 +26,7 @@ jobs:
           simple_lama --help
           flask --version
 
+      - name: Test simple_lama
+        run: |
+          simple_lama test_im.png test_mask.png test_out.png
+          diff inpainted.png test_out.png
