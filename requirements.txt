@@ -1,2 +1,10 @@
+# Server requirements
 flask==3.0.0
 simple-lama-inpainting==0.1.0
+numpy==1.24.4
+opencv-python==4.8.1.78
+
+# Client requirements (for testing)
+requests==2.31.0
+
+# TODO: pin all dependencies?

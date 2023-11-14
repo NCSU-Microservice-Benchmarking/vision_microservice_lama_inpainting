@@ -1,74 +1,87 @@
 # Vision Microservice Lama Inpainting
 Deploys [simple-lama-inpainting](https://github.com/enesmsahin/simple-lama-inpainting) as a microservice. The microservice uses an `Ubuntu 20.04.6 LTS` container (see below for more system information).
 
-## Environment setup
 
-First, install [venv](https://docs.python.org/3/library/venv.html). I decided to do so through `apt`:
+## Requirements
+
+Luckily, base Ubuntu 20.04 has all that's needed. The remaining requirements are Python packages. [venv](https://docs.python.org/3/library/venv.html) is used to avoid cluttering the system (optional).
+
+If you do not have the `venv` package, it is recommended to install it through the system package manager:
 ```console
 # apt install python3.8-venv
 ```
-Next, create the venv:
-```console
-$ python3 -m venv .venv
-```
 
-Now you can activate the venv and install `simple-lama-inpainting`. In bash:
-```console
-$ source .venv/bin/activate
-$ pip install simple-lama-inpainting
-```
-
-## Runtime requirements
-
-If you use `simple_lama` and run into the following error:
+Note: If you use `simple_lama` and run into the following error, you may need to `apt install libgl1`.
 ```console
 ImportError: libGL.so.1: cannot open shared object file: No such file or directory
 ```
 
-you may need to `apt install libgl1`.
 
-## Usage
+## Server Deployment
 
-### simple-lama-inpainting
+### Helper Script
 
-See the documentation in [simple-lama-inpainting · PyPI](https://pypi.org/project/simple-lama-inpainting/).
+```console
+$ ./deploy.sh
+```
 
-### Server Deployment (Flask)
+### Manual
 
-As of right now, `app.py` has harcoded paths for testing purposes.
+1. Create and activate the `venv` (optional)
+```console
+$ python3 -m venv .venv
+$ source .venv/bin/activate # for bash/zsh
+```
 
-TODO: get the image and mask through an API call.
+2. Install the required packages
+```console
+$ pip install simple-lama-inpainting
+```
 
+3. Start the [Flask](https://palletsprojects.com/p/flask) server:
 ```
 $ flask run
 ```
 
+## Testing
+
+After deploying the server, `./send_request.py` sends `test_im.png` and `test_mask.png` in the current directory to the server. The result will be saved as `result.png`.
+
+Note: `send_request.py` assumes the hostname is `http://127.0.0.1:5000`. Make sure to modify `host` if needed.
+
 ## System info
 ```console
-(.venv) osalbahr@12841f99a914:~$ fastfetch
-                            ....               osalbahr@12841f99a914
-              .',:clooo:  .:looooo:.           ---------------------
-           .;looooooooc  .oooooooooo'          OS: Ubuntu focal 20.04 x86_64
-        .;looooool:,''.  :ooooooooooc          Host: Alienware Aurora R9 (1.0.7)
-       ;looool;.         'oooooooooo,          Kernel: 6.2.0-34-generic
-      ;clool'             .cooooooc.  ,,       Uptime: 13 days, 8 hours, 38 mins
-         ...                ......  .:oo,      Packages: 355 (dpkg), 13 (brew)
-  .;clol:,.                        .loooo'     Shell: bash 5.0.17
- :ooooooooo,                        'ooool     Terminal: /dev/pts/0
-'ooooooooooo.                        loooo.    CPU: Intel(R) Core(TM) i9-9900K (16) @ 5.00 GHz
-'ooooooooool                         coooo.    Memory: 34.28 GiB / 62.61 GiB (55%)
- ,loooooooc.                        .loooo.    Disk (/): 110.56 GiB / 1.83 TiB (6%) - overlay
-   .,;;;'.                          ;ooooc     Locale: C.UTF-8
-       ...                         ,ooool.    
-    .cooooc.              ..',,'.  .cooo.      ████████████████████████
-      ;ooooo:.           ;oooooooc.  :l.       ████████████████████████
-       .coooooc,..      coooooooooo.    
-         .:ooooooolc:. .ooooooooooo'    
-           .':loooooo;  ,oooooooooc    
-               ..';::c'  .;loooo:'    
+(.venv) osalbahr@12841f99a914:~$ fastfetch 
+                            ....    
+              .',:clooo:  .:looooo:.    
+           .;looooooooc  .oooooooooo'    
+        .;looooool:,''.  :ooooooooooc    
+       ;looool;.         'oooooooooo,    
+      ;clool'             .cooooooc.  ,,    
+         ...                ......  .:oo,    
+  .;clol:,.                        .loooo'     osalbahr@12841f99a914
+ :ooooooooo,                        'ooool     ---------------------
+'ooooooooooo.                        loooo.    OS: Ubuntu focal 20.04 x86_64
+'ooooooooool                         coooo.    Host: Alienware Aurora R9 (1.0.7)
+ ,loooooooc.                        .loooo.    Kernel: 6.2.0-34-generic
+   .,;;;'.                          ;ooooc     Uptime: 33 days, 6 hours, 32 mins
+       ...                         ,ooool.     Packages: 358 (dpkg), 33 (brew)
+    .cooooc.              ..',,'.  .cooo.      Shell: bash 5.0.17
+      ;ooooo:.           ;oooooooc.  :l.       Terminal: node
+       .coooooc,..      coooooooooo.           CPU: Intel(R) Core(TM) i9-9900K (16) @ 5.00 GHz
+         .:ooooooolc:. .ooooooooooo'           Memory: 24.37 GiB / 62.61 GiB (39%)
+           .':loooooo;  ,oooooooooc            Disk (/): 200.92 GiB / 1.83 TiB (11%) - overlay
+               ..';::c'  .;loooo:'             Locale: en_US.UTF-8
                              .
+                                               ████████████████████████
+                                               ████████████████████████
+
+
+
+
+
 (.venv) osalbahr@12841f99a914:~$ nvidia-smi 
-Wed Oct 25 03:13:20 2023       
+Tue Nov 14 01:06:38 2023       
 +---------------------------------------------------------------------------------------+
 | NVIDIA-SMI 535.113.01             Driver Version: 535.113.01   CUDA Version: 12.2     |
 |-----------------------------------------+----------------------+----------------------+
@@ -77,7 +90,7 @@ Wed Oct 25 03:13:20 2023
 |                                         |                      |               MIG M. |
 |=========================================+======================+======================|
 |   0  NVIDIA GeForce RTX 2080 ...    Off | 00000000:01:00.0 Off |                  N/A |
-| 18%   28C    P8              16W / 250W |     15MiB /  8192MiB |      0%      Default |
+| 18%   29C    P8              16W / 250W |     15MiB /  8192MiB |      0%      Default |
 |                                         |                      |                  N/A |
 +-----------------------------------------+----------------------+----------------------+
 |   1  NVIDIA GeForce RTX 2080 ...    Off | 00000000:02:00.0 Off |                  N/A |
