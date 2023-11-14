@@ -15,11 +15,8 @@ jobs:
 
       - name: Create and activate the venv
         run: |
-          python3 --version
-          sudo apt update
-          sudo apt upgrade
-          python3 --version
-
+          which -a python3
+          for p in $(!!); do echo $p && $p --version; done
           python3 -m venv .venv
           source .venv/bin/activate
 
