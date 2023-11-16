@@ -2,9 +2,12 @@ from flask import Flask, Response, request
 from simple_lama_inpainting import SimpleLama
 import numpy as np
 import cv2
+from flask_cors import CORS
 
 # The server
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 # The model
 simple_lama = SimpleLama()
