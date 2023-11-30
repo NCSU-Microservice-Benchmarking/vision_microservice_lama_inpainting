@@ -1,4 +1,4 @@
-# Vision Microservice Lama Inpainting
+# Vision Microservice: LaMa Inpainting
 Deploys [simple-lama-inpainting](https://github.com/enesmsahin/simple-lama-inpainting) as a microservice. The microservice uses an `Ubuntu 20.04.6 LTS` container (see below for more system information).
 
 
