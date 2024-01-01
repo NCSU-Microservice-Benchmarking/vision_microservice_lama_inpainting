@@ -2,7 +2,7 @@
 flask==3.0.0
 simple-lama-inpainting==0.1.0
 numpy==1.24.4
-opencv-python==4.8.1.78
+opencv-python==4.9.0.80
 
 # Client requirements (for testing)
 requests==2.31.0
